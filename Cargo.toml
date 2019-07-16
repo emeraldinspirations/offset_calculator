@@ -1,0 +1,7 @@
+[package]
+name = "offset_calculator"
+version = "0.1.0"
+authors = ["Matthew \"Juniper\" Barlett <emeraldinspirations+asusrog839h+u1904@gmail.com>"]
+edition = "2018"
+
+[dependencies]
