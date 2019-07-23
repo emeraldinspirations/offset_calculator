@@ -1,14 +1,14 @@
-//use chrono::Utc;
-//use chrono::Date;
+use chrono::Utc;
+use std::env;
+use clap::App;
 
 mod lib;
 
 fn main() {
-//    let args = Cli::from_args();
-//    let content = std::fs::read_to_string(&args.path)
-//        .with_context(|_| format!("could not read file `{}`", args.path.display()))?;
+  let matches = App::new("This is a test")
+    .get_matches();
 
-//    lib.main(&content, &args.pattern, &mut std::io::stdout());
+  lib::main(&0i64, Utc::today(), &mut std::io::stdout());
 
 //    Ok(())
 }
