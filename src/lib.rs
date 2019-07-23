@@ -13,8 +13,7 @@ pub fn main (
   mut writer: impl std::io::Write
 ) {
 
-  let duration = Duration::days(*offset);
-  let new_date = date + duration;
+  let new_date = date + Duration::days(*offset);
   let date_text = new_date.format("%d %b %Y").to_string().to_uppercase();
 
   writeln!(writer, "Expires:\t{}", date_text);
