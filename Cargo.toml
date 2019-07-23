@@ -5,3 +5,4 @@ authors = ["Matthew \"Juniper\" Barlett <emeraldinspirations+asusrog839h+u1904@g
 edition = "2018"
 
 [dependencies]
+chrono = "0.4"
