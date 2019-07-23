@@ -41,7 +41,6 @@ pub fn test_user_story_1863275034() {
 
     main(offset, date, &mut actual);
 
-    let result = String::from_utf8_lossy(&actual);
     assert!(String::from_utf8_lossy(&actual).contains(expected));
   }
 }
