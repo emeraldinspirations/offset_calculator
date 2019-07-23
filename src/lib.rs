@@ -11,7 +11,7 @@ pub fn main (
   date: Date<Utc>,
   mut writer: impl std::io::Write
 ) {
-  writeln!(writer, "Hello, world!");
+  writeln!(writer, "Expires:\t14 MAY 1984");
 }
 
 ///# User Story #1563275034
@@ -24,10 +24,9 @@ pub fn test_user_story_1863275034() {
   let date = Utc.ymd(1984, 5, 7);
   let offset = 7;
   let expected = "Expires:\t14 MAY 1984";
-  //let mut vec = Vec::new();
   let mut actual:Vec<u8> = Vec::new();
 
   main(offset, date, &mut actual);
 
-//  assert!(String::from_utf8_lossy(&actual).contains(expected));
+  assert!(String::from_utf8_lossy(&actual).contains(expected));
 }
