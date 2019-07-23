@@ -4,14 +4,20 @@
 
 use chrono::Utc;
 use chrono::Date;
+use chrono::Duration;
 use chrono::offset::TimeZone;
 
 pub fn main (
-  offset: i32,
+  offset: &i64,
   date: Date<Utc>,
   mut writer: impl std::io::Write
 ) {
-  writeln!(writer, "Expires:\t14 MAY 1984");
+
+  let duration = Duration::days(*offset);
+  let new_date = date + duration;
+  let date_text = new_date.format("%d %b %Y").to_string().to_uppercase();
+
+  writeln!(writer, "Expires:\t{}", date_text);
 }
 
 ///# User Story #1563275034
@@ -22,11 +28,18 @@ pub fn main (
 #[test]
 pub fn test_user_story_1863275034() {
   let date = Utc.ymd(1984, 5, 7);
-  let offset = 7;
-  let expected = "Expires:\t14 MAY 1984";
-  let mut actual:Vec<u8> = Vec::new();
+  let scenario_collection = [
+    (7i64, "Expires:\t14 MAY 1984"),
+    (8i64, "Expires:\t15 MAY 1984"),
+  ];
 
-  main(offset, date, &mut actual);
+  for scenario in scenario_collection.iter() {
+    let (offset, expected) = scenario;
+    let mut actual:Vec<u8> = Vec::new();
 
-  assert!(String::from_utf8_lossy(&actual).contains(expected));
+    main(offset, date, &mut actual);
+
+    let result = String::from_utf8_lossy(&actual);
+    assert!(String::from_utf8_lossy(&actual).contains(expected));
+  }
 }
